@@ -42,6 +42,7 @@ silver = (
 # CELL ********************
 
 silver.write.mode("overwrite").saveAsTable("silver_customers")
+print(f"Rows written: {silver.count()}")
 
 # METADATA ********************
 
