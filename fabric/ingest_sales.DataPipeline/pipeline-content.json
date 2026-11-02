@@ -13,6 +13,26 @@
           "notebookId": "00000000-0000-0000-0000-00000000aa02",
           "workspaceId": "00000000-0000-0000-0000-000000000000"
         }
+      },
+      {
+        "name": "Validate silver_customers quality",
+        "type": "TridentNotebook",
+        "dependsOn": [
+          {
+            "activity": "Run silver_clean",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0
+        },
+        "typeProperties": {
+          "notebookId": "00000000-0000-0000-0000-00000000aa04",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        }
       }
     ]
   }
