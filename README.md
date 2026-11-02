@@ -2,7 +2,6 @@
 
 Sample repository for a GitHub for data teams training. 
 
-Ryan edit (02/11/26) - The workshop has started.
 
 The `fabric/` folder is laid out the way Fabric Git integration stores items:
 one folder per item, named `<name>.<Type>`, with a `.platform` metadata file
