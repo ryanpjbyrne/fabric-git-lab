@@ -1,6 +1,6 @@
 # fabric-git-lab
 
-Sample repository for a GitHub for data teams training. (02/11/26)
+Sample repository for a GitHub for data teams training. 
 
 The `fabric/` folder is laid out the way Fabric Git integration stores items:
 one folder per item, named `<name>.<Type>`, with a `.platform` metadata file
