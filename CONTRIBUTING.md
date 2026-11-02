@@ -2,6 +2,8 @@
 
 This is a training repository. These are the conventions the exercises use, and a sensible starting point for a small team.
 
+EDIT
+
 ## Workflow
 
 1. Pick or open an issue.
