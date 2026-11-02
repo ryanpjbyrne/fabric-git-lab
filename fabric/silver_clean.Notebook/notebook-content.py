@@ -28,7 +28,7 @@ bronze = spark.read.table("bronze_customers")
 silver = (
     bronze
     .withColumn("customer_name", F.trim(F.col("customer_name")))
-    .withColumn("postcode", F.upper(F.col("postcode")))
+    .withColumn("postcode", F.upper(F.regexp_replace(F.col("postcode"), " ", "")))
     .dropDuplicates(["customer_id"])
 )
 
