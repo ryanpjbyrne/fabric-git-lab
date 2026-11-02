@@ -110,3 +110,63 @@ A commit cannot simply be deleted from shared history. Revert creates a new comm
 ## Optional: visualise it
 
 [Visualizing Git](https://git-school.github.io/visualizing-git/) shows branches, merges and reverts as a diagram.
+
+## Connect a Fabric workspace to a Git repository
+
+Not part of the Day 1 labs. This is preparation for Day 2 (Fabric CI/CD), and the steps you will use with your own repository.
+
+> **Do not connect a real workspace to this repository.** It is public, so every item definition Fabric commits becomes public. Use a throwaway workspace with no real data, or use your organisation's private repository.
+
+Manual: [Get started with Git integration](https://learn.microsoft.com/en-us/fabric/cicd/git-integration/git-get-started?tabs=github%2Ccommit-to-git), [Git integration admin settings](https://learn.microsoft.com/en-us/fabric/admin/git-integration-admin-settings)
+
+### Before you start
+
+You need all of these:
+
+- **A Fabric capacity.** A [free trial](https://learn.microsoft.com/en-us/fabric/fundamentals/fabric-trial) is enough.
+- **Tenant settings turned on** by a tenant, capacity or workspace admin, under **Admin portal > Tenant settings**:
+  - Users can create Fabric items
+  - Users can synchronize workspace items with their Git repositories
+  - Users can synchronize workspace items with GitHub repositories
+  - Create workspaces (only if you want to branch out to a new workspace)
+- **Workspace Admin role** on the workspace. Only an admin can connect it. Once connected, other members can commit and update according to their permissions.
+- **A GitHub personal access token.** Create a fine-grained token at <https://github.com/settings/personal-access-tokens/new>:
+  - Repository access: only the repository you are connecting
+  - Repository permissions: **Contents** set to read and write
+  - Expiry: as short as is practical
+  - If your organisation enforces SSO, authorise the token for it
+
+Keep the token out of notebooks, commits and chat. Treat it like a password.
+
+### Connect the workspace
+
+1. Sign in to Fabric and open the workspace.
+2. Go to **Workspace settings > Git integration**.
+3. Choose **GitHub**, then **Add account**.
+4. Enter a unique display name and paste your token. For a repository on `github.com` the repository URL is optional. For a `ghe.com` (data residency) tenant it is **mandatory**. If you enter a URL you can only connect to that repository.
+5. Select **Connect**.
+6. Choose the repository, then the **branch**. Pick an existing branch or choose **New branch**. Use a branch dedicated to this workspace, not `main`.
+7. Enter a **folder**, for example `fabric`. Leave it blank to use the repository root. You can only connect to one branch and one folder at a time.
+8. Select **Connect and sync**.
+
+### The first sync
+
+- If the workspace or the branch is empty, content is copied from the one that has content.
+- If both have content, Fabric asks which direction to sync. Choose carefully, because updating a workspace from Git can overwrite changes in the workspace.
+
+### Day to day
+
+- The **Source control** icon shows the number of uncommitted changes.
+- **Commit** sends workspace changes to the branch. Write a message that says what and why.
+- **Update** brings new commits from the branch into the workspace. Commit your own changes first.
+- To keep one change per branch, use **Branch out** to make a feature branch and a connected feature workspace, then raise a pull request on GitHub as in Lab 2.
+
+### If something does not work
+
+| Symptom | Likely cause |
+| --- | --- |
+| No **Git integration** option, or **GitHub** is missing | A tenant setting above is off, or you are not a workspace admin |
+| Connect fails with an authorisation error | Token has the wrong repository, lacks Contents read and write, has expired, or needs SSO authorisation |
+| Cannot find the repository | A scoped token only reaches its own repository, or the repository URL is missing on a `ghe.com` tenant |
+| Cannot switch or create branches | By default this needs the workspace Admin role |
+| An item will not commit | Not every item type supports Git yet. Check the supported items list |
