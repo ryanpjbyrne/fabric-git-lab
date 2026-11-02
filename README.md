@@ -21,7 +21,7 @@ This is a hand-built teaching sample, not an export from a live workspace.
 
 ## Getting started
 
-Please do this before the session. It takes about 15 minutes and means the labs start on time.
+
 Background reading: [Getting Ready for Class](https://githubtraining.github.io/training-manual/#/01_getting_ready_for_class) in the GitHub Training Manual.
 
 ### 1. GitHub account
